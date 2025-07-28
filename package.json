@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "android:init": "npx cap add android",
+    "android:build": "npx cap copy android && npx cap open android",
+    "ios:init": "npx cap add ios",
+    "ios:build": "npx cap copy ios && npx cap open ios",
+    "desktop:init": "npm install @capacitor/electron && npx cap add electron",
+    "desktop:build": "npx cap copy electron && npx cap open electron"
   },
   "keywords": [],
   "author": "",

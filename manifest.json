@@ -1,0 +1,27 @@
+
+{
+  "name": "OmniPlay - Universal File Viewer",
+  "short_name": "OmniPlay",
+  "description": "Universal File Viewer - 100% Privacy Respecting",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#4a90e2",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "generated-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "generated-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
