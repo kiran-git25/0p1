@@ -1,0 +1,68 @@
+Enhance the OmniPlay app with secure handling of potentially unsafe files and a transparent security statement.
+
+---
+
+### 1️⃣ Create a Component: `UnsafeFileWarning.jsx`
+
+Purpose:  
+To display a clear warning to the user if they attempt to open file types that are **commonly used to spread malware**, including:
+
+`.exe`, `.bat`, `.cmd`, `.js`, `.vbs`, `.sh`, `.msi`, `.apk`, `.dll`, `.jar`
+
+---
+
+🔹 Requirements:
+
+- When such a file is detected, **block it from auto-opening**
+- Instead, show a UI warning panel with:
+  - 🚫 Red warning icon
+  - File name and extension
+  - Message:
+    > "⚠️ This file type may pose a security risk (e.g., virus or executable code). OmniPlay does not run or execute any files. If you trust this file, you may choose to view it as plain text."
+  - Buttons:
+    - ✅ “Open as Plain Text” (safe mode)
+    - ❌ “Cancel”
+
+- In safe mode:
+  - Display file content as raw text only
+  - Disable download, execution, or rendering
+
+- Add this warning module to the file loading handler logic
+
+---
+
+### 2️⃣ Add a "Security Statement" in `README.md`
+
+Create a new section titled:
+
+## 🔐 Security Statement
+
+> OmniPlay is built with a privacy-first, security-conscious architecture. It is a 100% client-side application — it does not upload, execute, or transmit any files.
+
+> - Files are only accessed locally and temporarily via browser memory
+> - OmniPlay never executes code from files (e.g., scripts, binaries, macros)
+> - Files with known risk extensions (`.exe`, `.bat`, `.js`, `.vbs`, etc.) are **not opened automatically**
+> - Users are shown a warning and can choose to view such files as plain text only
+> - OmniPlay does not track users, use analytics, or store personal data
+
+> This design ensures that:
+> - No virus can be spread from OmniPlay to your system
+> - No user can infect another user (OmniPlay has no data sharing or networking)
+> - All actions are sandboxed inside your own browser
+
+---
+
+### 3️⃣ Update File Handler Logic
+
+- Add an extension blacklist check
+- Integrate `UnsafeFileWarning.jsx` into the file-opening workflow
+- If file is on the list, block direct access and display the warning component
+
+---
+
+### ✅ Output Files
+
+- `components/UnsafeFileWarning.jsx`
+- `utils/dangerousExtensions.js` → export list of blocked file types
+- Updated file handler logic
+- Updated `README.md` with Security Statement section
