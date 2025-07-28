@@ -144,6 +144,13 @@ class OmniPlayApp {
     }
     
     async processFile(file) {
+        // Check if file is potentially dangerous
+        if (FileHandler.isDangerous(file)) {
+            const dangerLevel = FileHandler.getDangerLevel(file);
+            UnsafeFileWarning.show(file, dangerLevel);
+            return; // Stop processing and show warning instead
+        }
+        
         const fileType = FileHandler.getFileType(file);
         const viewerType = FileHandler.getViewerType(fileType);
         

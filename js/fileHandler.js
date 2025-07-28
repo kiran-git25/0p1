@@ -1,4 +1,7 @@
 
+// Import dangerous extensions utility
+import { isDangerousFile, getDangerLevel } from '../utils/dangerousExtensions.js';
+
 class FileHandler {
     static supportedTypes = {
         // Documents
@@ -94,6 +97,14 @@ class FileHandler {
         return extensionMap[extension] || 'unknown';
     }
 
+    static isDangerous(file) {
+        return isDangerousFile(file.name, file.type);
+    }
+    
+    static getDangerLevel(file) {
+        return getDangerLevel(file.name, file.type);
+    }
+    
     static getViewerType(fileType) {
         const viewerMap = {
             // Documents
