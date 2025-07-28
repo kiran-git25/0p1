@@ -1,0 +1,55 @@
+Add a new feature to the open-source app OmniPlay:
+
+---
+
+### 🧭 Smart URL Search Bar
+
+1. Create a **search/input bar** at the top of the UI that accepts:
+   - **YouTube links** (e.g., https://www.youtube.com/watch?v=abc123)
+   - **Direct links to files** (e.g., https://example.com/file.pdf)
+   - Optional: internal file reference (local file loaded earlier)
+
+2. Based on the URL:
+   - If it's a YouTube link, extract the video ID and embed it using an `<iframe>`:
+     - Use YouTube's official embed format: `https://www.youtube.com/embed/VIDEO_ID`
+     - Use options like `modestbranding=1`, `rel=0`, `controls=1`
+     - Show a disclaimer:
+       > "Note: This video is streamed via YouTube's public embed player. Ads may still appear unless you use YouTube Premium."
+     - Do **not** use any service or method to bypass ads or download the stream.
+
+   - If it's any other link:
+     - Try to fetch or preview the file in a new viewer window
+     - If CORS or MIME type is unsupported, show a fallback message
+     - Never store, cache, or track the URL
+
+---
+
+### ⚖️ Legal, Copyright & Licensing Compliance
+
+1. **Respect all third-party content licenses:**
+   - Do not use any proprietary or unlicensed code
+   - Clearly mention any third-party libraries used in `LICENSE` and `README.md`
+   - Use only MIT, Apache 2.0, or other open-source-compatible licensed tools
+
+2. **Trademark & Branding:**
+   - Do **not** use YouTube's logo, branding, or assets
+   - Use plain text like “YouTube video” — no icons, no logos
+   - Do **not** represent OmniPlay as affiliated with Google, YouTube, Microsoft, Adobe, etc.
+
+3. **Privacy and User Rights:**
+   - Never track user behavior
+   - Do not save search history or usage analytics
+   - Clearly state in a `PRIVACY.md` or `README.md`:
+     > “OmniPlay is a privacy-first app. All file handling and video playback occur entirely in the user’s browser. No data is sent to any server.”
+
+4. **Add UI disclaimers when necessary**, for example:
+   > “You are responsible for complying with copyright laws when using OmniPlay. Do not open, play, or share content you do not own or have rights to.”
+
+---
+
+### 🧩 Output Required
+
+- Add a `SearchBar.jsx` or `URLInputBar.jsx` component
+- Update router to load correct viewer based on link type (YouTube, file, etc.)
+- Add a `LegalNotice` component for user-facing warnings
+- Ensure the app stays 100% client-side and open-source compliant
