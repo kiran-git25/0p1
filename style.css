@@ -1,0 +1,269 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.drop-zone {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px dashed #ccc;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.drop-zone.drag-over {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.02);
+}
+
+.drop-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.drop-zone h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.drop-zone p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.browse-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.browse-btn:hover {
+    background: #5a6fd8;
+}
+
+.windows-container {
+    position: relative;
+    min-height: 400px;
+    padding: 2rem;
+}
+
+.file-window {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-width: 400px;
+    min-height: 300px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow: hidden;
+    resize: both;
+}
+
+.window-header {
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+}
+
+.window-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    flex: 1;
+    margin-right: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-btn {
+    background: #ff5f57;
+}
+
+.window-content {
+    height: calc(100% - 49px);
+    overflow: auto;
+    padding: 1rem;
+}
+
+.viewer-content {
+    width: 100%;
+    height: 100%;
+}
+
+.text-viewer {
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.image-viewer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.video-viewer video,
+.audio-viewer audio {
+    width: 100%;
+    max-width: 100%;
+}
+
+.pdf-viewer {
+    height: 100%;
+    overflow: auto;
+}
+
+.pdf-page {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.spreadsheet-viewer {
+    overflow: auto;
+    height: 100%;
+}
+
+.spreadsheet-viewer table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.spreadsheet-viewer th,
+.spreadsheet-viewer td {
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.spreadsheet-viewer th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.archive-viewer {
+    font-family: monospace;
+}
+
+.archive-item {
+    padding: 4px 8px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.error-message {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .file-window {
+        min-width: 300px;
+        width: 90vw !important;
+        height: 70vh !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        margin: 1rem auto;
+    }
+    
+    .windows-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

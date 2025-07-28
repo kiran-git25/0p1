@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniPlay - Universal File Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🎵 OmniPlay</h1>
+            <p>Universal File Viewer - 100% Privacy Respecting</p>
+        </header>
+        
+        <div id="drop-zone" class="drop-zone">
+            <div class="drop-content">
+                <div class="drop-icon">📁</div>
+                <h2>Drop files here or click to browse</h2>
+                <p>Supports 55+ file formats • No uploads • Complete privacy</p>
+                <button id="browse-btn" class="browse-btn">Browse Files</button>
+                <input type="file" id="file-input" multiple accept="*/*" style="display: none;">
+            </div>
+        </div>
+        
+        <div id="windows-container" class="windows-container"></div>
+        
+        <div id="unsupported-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Unsupported File Format</h3>
+                <div id="unsupported-content"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/fileHandler.js"></script>
+    <script src="js/viewers/pdfViewer.js"></script>
+    <script src="js/viewers/docViewer.js"></script>
+    <script src="js/viewers/spreadsheetViewer.js"></script>
+    <script src="js/viewers/mediaPlayer.js"></script>
+    <script src="js/viewers/imageViewer.js"></script>
+    <script src="js/viewers/archiveViewer.js"></script>
+    <script src="js/viewers/codeViewer.js"></script>
+    <script src="js/viewers/plainTextViewer.js"></script>
+    <script src="js/windowManager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

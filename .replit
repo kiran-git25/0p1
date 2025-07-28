@@ -12,3 +12,15 @@ channel = "stable-24_11"
 run = ["node", "index.js"]
 deploymentTarget = "autoscale"
 ignorePorts = false
+
+[workflows]
+runButton = "Run OmniPlay"
+
+[[workflows.workflow]]
+name = "Run OmniPlay"
+author = 45640329
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node index.js"
