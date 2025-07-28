@@ -1,0 +1,71 @@
+Create full legal and licensing documentation for an open-source app called **OmniPlay**.
+
+---
+
+### 📄 LICENSE.md (MIT License)
+- Apply the **MIT license** to the project
+- Include default MIT license text
+- Fill in:
+  - Author: Kiran
+  - Year: 2025
+  - Project name: OmniPlay
+
+---
+
+### 📘 README.md — Legal and Usage Disclaimers
+
+Add a dedicated **"Legal Notice"** section to the README:
+1. Clarify that:
+   - OmniPlay is an **open-source, client-side file viewer/player**
+   - It does **not collect, store, or transmit user data**
+   - It does **not bypass or modify any third-party platform behavior** (e.g., YouTube ads, file protection, DRM)
+2. Add a YouTube disclaimer:
+   > “YouTube videos are embedded using the official YouTube Embed API. OmniPlay does not block ads or download YouTube content. For ad-free playback, please use YouTube Premium.”
+3. Add a general responsibility note:
+   > “Users are solely responsible for any content they open or interact with in OmniPlay. The maintainers are not liable for misuse, copyright violations, or illegal content access.”
+4. State that:
+   - All trademarks (e.g., YouTube, Microsoft Word, Excel) are property of their respective owners
+   - OmniPlay is not affiliated with or endorsed by these companies
+
+---
+
+### 🔐 PRIVACY.md
+Create a file that clearly states:
+- OmniPlay is 100% client-side
+- No data is tracked, stored, or shared
+- No cookies, analytics, or user sessions are used
+- Users retain full control of their data
+
+---
+
+### 🤝 CONTRIBUTING.md
+Create a contributor guideline:
+- All contributions must maintain privacy-first principles
+- No server-side logic allowed
+- All third-party libraries must have open-source licenses (MIT, Apache 2.0, BSD, etc.)
+- Contributors must not introduce features that violate copyright or DRM policies
+
+---
+
+### 👥 CODE_OF_CONDUCT.md
+Generate a default open-source code of conduct (based on Contributor Covenant v2.1):
+- Define respectful communication
+- Prohibit hate speech, abuse, and discrimination
+- Describe reporting and enforcement mechanisms
+
+---
+
+### 📦 THIRD_PARTY_LICENSES.md
+Generate a placeholder file that includes:
+- A list of libraries or dependencies with their license types (to be filled in manually)
+- A warning to avoid using GPL or commercial libraries
+
+---
+
+### 📁 Output Files Required:
+- LICENSE.md (MIT License)
+- README.md (Legal disclaimer section added)
+- PRIVACY.md
+- CONTRIBUTING.md
+- CODE_OF_CONDUCT.md
+- THIRD_PARTY_LICENSES.md
