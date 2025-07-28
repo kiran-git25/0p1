@@ -13,6 +13,8 @@ class OmniPlayApp {
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
         const browseBtn = document.getElementById('browse-btn');
+        const urlInput = document.getElementById('url-input');
+        const loadUrlBtn = document.getElementById('load-url-btn');
         
         // File input change
         fileInput.addEventListener('change', (e) => {
@@ -27,6 +29,17 @@ class OmniPlayApp {
         // Drop zone click
         dropZone.addEventListener('click', () => {
             fileInput.click();
+        });
+        
+        // URL input handling
+        loadUrlBtn.addEventListener('click', () => {
+            this.handleUrl(urlInput.value.trim());
+        });
+        
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.handleUrl(urlInput.value.trim());
+            }
         });
         
         // Drag and drop
@@ -71,6 +84,62 @@ class OmniPlayApp {
     async handleFiles(files) {
         for (const file of files) {
             await this.processFile(file);
+        }
+    }
+    
+    async handleUrl(url) {
+        if (!url) {
+            alert('Please enter a valid URL');
+            return;
+        }
+        
+        try {
+            // Validate URL
+            new URL(url);
+            
+            if (YouTubeViewer.isYouTubeUrl(url)) {
+                await this.processYouTubeUrl(url);
+            } else {
+                await this.processDirectUrl(url);
+            }
+            
+            // Clear input after successful processing
+            document.getElementById('url-input').value = '';
+            
+        } catch (error) {
+            alert('Invalid URL format. Please enter a valid URL.');
+            console.error('URL processing error:', error);
+        }
+    }
+    
+    async processYouTubeUrl(url) {
+        const container = WindowManager.createWindow(
+            { name: 'YouTube Video', size: 0 }, 
+            'youtube'
+        );
+        
+        try {
+            await YouTubeViewer.render(url, container);
+        } catch (error) {
+            console.error('Error processing YouTube URL:', error);
+            container.innerHTML = `<div class="error-message">Error loading YouTube video: ${error.message}</div>`;
+        }
+    }
+    
+    async processDirectUrl(url) {
+        const urlPath = new URL(url).pathname;
+        const filename = urlPath.split('/').pop() || 'remote-file';
+        
+        const container = WindowManager.createWindow(
+            { name: filename, size: 0 }, 
+            'url'
+        );
+        
+        try {
+            await URLViewer.render(url, container);
+        } catch (error) {
+            console.error('Error processing direct URL:', error);
+            container.innerHTML = `<div class="error-message">Error loading remote file: ${error.message}</div>`;
         }
     }
     
