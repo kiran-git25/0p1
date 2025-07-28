@@ -1,0 +1,67 @@
+Enhance the OmniPlay app with full support for **background playback of audio and video files**.
+
+---
+
+### 🎧 Background Media Playback
+
+1. Enable **audio and video playback to continue when:**
+   - User switches tabs
+   - User minimizes the browser or mobile PWA
+   - App is in Electron background (desktop)
+
+2. Ensure the media player:
+   - Does **not pause automatically** due to visibility changes (`visibilitychange` event)
+   - Works on **mobile browsers** (must be triggered by user interaction to comply with autoplay policies)
+
+3. Add a **persistent media player** component:
+   - That remains active even when file viewer is closed
+   - Optionally display a **mini-player** in a fixed location (e.g., bottom-right)
+
+---
+
+### 🎮 Audio & Video Controls (Required Features)
+
+1. Add a modern control panel with:
+   - ▶️ Play / ⏸ Pause
+   - ⏮ Rewind / ⏭ Forward
+   - 🔊 Volume control (with mute toggle)
+   - 🕓 Seek bar with current time / total duration
+   - 🔁 Loop toggle
+   - 🐢 Speed control (0.5x, 1x, 1.5x, 2x)
+
+2. Ensure the UI is:
+   - Touch-friendly (mobile support)
+   - Keyboard-accessible (tab, spacebar, arrows)
+   - Clean, minimal, no animations
+
+3. Optional: Add a **“Now Playing” dock or bar** for better multitasking UI.
+
+---
+
+### ⚙️ Technical Details
+
+1. Use the standard `<audio>` and `<video>` elements with `controlsList` and `autoplay` managed via user input
+2. Use the `Page Visibility API` to detect tab changes but **do not pause** media on blur
+3. Keep media playback modular — include:
+   - `AudioPlayer.jsx` or `AudioController.js`
+   - `VideoPlayer.jsx` with full control overlay
+4. Respect browser limitations: autoplay only after explicit user interaction
+
+---
+
+### 🔐 Privacy & Performance Notes
+
+- Playback must remain client-side
+- No streaming or tracking
+- Do not cache or persist media in storage
+
+---
+
+### ✅ Output Files
+
+- Add new components:
+  - `PersistentAudioPlayer.jsx`
+  - `VideoControls.jsx`
+  - `MiniPlayer.jsx` (optional)
+- Update the global layout to support background-running components
+- Document usage in `README.md` under “Background Playback”
