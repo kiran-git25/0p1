@@ -7,7 +7,7 @@ class YouTubeViewer {
                 throw new Error('Invalid YouTube URL');
             }
             
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0&controls=1`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&controls=1&enablejsapi=1&origin=${window.location.origin}`;
             
             container.innerHTML = `
                 <div class="youtube-viewer">
@@ -35,13 +35,16 @@ class YouTubeViewer {
     static extractVideoId(url) {
         const patterns = [
             /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-            /youtube\.com\/watch\?.*v=([^&\n?#]+)/
+            /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
+            /youtu\.be\/([^?&\n#]+)/,
+            /youtube\.com\/v\/([^?&\n#]+)/
         ];
         
         for (const pattern of patterns) {
             const match = url.match(pattern);
             if (match && match[1]) {
-                return match[1];
+                // Clean up video ID by removing any additional parameters
+                return match[1].split('&')[0].split('?')[0];
             }
         }
         
