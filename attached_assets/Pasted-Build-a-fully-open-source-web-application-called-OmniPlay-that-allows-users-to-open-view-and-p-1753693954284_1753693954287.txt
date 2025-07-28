@@ -1,0 +1,98 @@
+Build a fully open-source web application called **OmniPlay** that allows users to open, view, and play files directly from their local device. This must be a **100% privacy-respecting client-side app** — no file uploads, no analytics, no cookies, no tracking, no backend. All data must remain on the user's device only.
+
+---
+
+### ✅ Supported Platforms:
+- Web browsers (Chrome, Firefox, Safari, Edge)
+- Android/iOS (PWA or in-app browser)
+- Desktop (Electron optional)
+
+---
+
+### 📄 Supported File Types:
+
+**Documents (17 total):**  
+`.doc`, `.docx`, `.ppt`, `.pptx`, `.xls`, `.xlsx`, `.pdf`, `.txt`, `.csv`, `.rtf`, `.odt`, `.epub`, `.mobi`, `.json`, `.xml`, `.yaml`, `.ini`
+
+**Archives (5):**  
+`.zip`, `.rar`, `.7z`, `.tar`, `.gz`
+
+**Audio (7):**  
+`.mp3`, `.wav`, `.ogg`, `.flac`, `.aac`, `.m4a`, `.wma`
+
+**Video (9):**  
+`.mp4`, `.webm`, `.ogg`, `.mkv`, `.avi`, `.mov`, `.flv`, `.3gp`, `.ts`
+
+**Images (10):**  
+`.jpg`, `.jpeg`, `.png`, `.gif`, `.svg`, `.bmp`, `.ico`, `.webp`, `.avif`, `.tiff`
+
+**Code/Config (5):**  
+`.html`, `.css`, `.js`, `.md`, `.env`
+
+**Other Plain Text (2):**  
+`.cls` (LaTeX), `.log`
+
+---
+
+### ⚠️ Handling Unsupported Formats:
+If a file format **cannot be opened in-browser**, show a clear in-app **text guide or instruction popup** that explains:
+- Why it can't be opened directly
+- What tools or methods the user can use to convert/view it externally
+
+---
+
+### 🧠 Key Features
+
+1. **Client-Side Only**  
+   - No servers, no APIs, no data transfer
+   - Use FileReader, Blob, and browser APIs
+   - Do not track, save, or analyze user data
+
+2. **Drag & Drop + Open File**  
+   - Users can drag files into the app or use a button to open them
+
+3. **Mini Window Viewers**  
+   - Open multiple files at once in resizable "mini-windows"
+   - Each with the file name as a title bar
+
+4. **Auto-Detect File Type**  
+   - Use MIME type and extension to choose the correct viewer module
+   - Fallback to raw text display if unknown
+
+5. **UI Requirements**  
+   - Minimal, clean UI (no animations)
+   - Responsive across screen sizes
+   - No third-party fonts or trackers
+
+6. **Viewer Modules to Build**  
+   - `PDFViewer`, `DocViewer`, `SpreadsheetViewer`, `MediaPlayer`, `ImageViewer`, `ArchiveViewer`, `CodeViewer`, `PlainTextViewer`, `FallbackGuide`
+
+7. **Security & Privacy**  
+   - Sandbox file handling
+   - No use of localStorage or cloud sync
+   - No dependencies with questionable licenses (only MIT/BSD/Apache)
+
+---
+
+### 🛠️ Architecture Suggestions
+
+- Use React/Next.js (or HTML/JS/CSS if simpler)
+- Use libraries like:
+  - `pdf.js` (PDF)
+  - `mammoth.js` (DOCX)
+  - `sheetjs` (Excel/CSV)
+  - `jszip` + `unrar.js` (ZIP/RAR)
+  - `video.js` or native `<video>`/`<audio>`
+- Modular code: `/viewers`, `/utils/FileHandler.js`, `/components/WindowFrame.jsx`
+
+---
+
+### 🎁 Deliverables
+
+- Complete code with modular structure
+- Drag-and-drop enabled UI
+- File routing via smart FileHandler
+- Fallback instructions when needed
+- Fully deployable to GitHub + Vercel
+
+Make the code production-ready, privacy-focused, and well documented.
