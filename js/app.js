@@ -94,12 +94,19 @@ class OmniPlayApp {
 
         try {
             // Validate URL
-            new URL(url);
+            const urlObj = new URL(url);
 
+            // Handle different types of URLs
             if (YouTubeViewer.isYouTubeUrl(url)) {
                 await this.processYouTubeUrl(url);
             } else if (InstagramViewer.isInstagramUrl(url)) {
                 await this.processInstagramUrl(url);
+            } else if (this.isVideoStreamingUrl(url)) {
+                await this.processVideoStreamingUrl(url);
+            } else if (this.isDocumentUrl(url)) {
+                await this.processDocumentUrl(url);
+            } else if (this.isWebPageUrl(url)) {
+                await this.processWebPageUrl(url);
             } else {
                 await this.processDirectUrl(url);
             }
@@ -277,6 +284,101 @@ class OmniPlayApp {
         if (url.includes('/reel/')) return 'Reel';
         if (url.includes('/tv/')) return 'IGTV';
         return 'Content';
+    }
+
+    isVideoStreamingUrl(url) {
+        const streamingDomains = [
+            'vimeo.com', 'dailymotion.com', 'twitch.tv', 'tiktok.com',
+            'facebook.com/watch', 'twitter.com', 'x.com'
+        ];
+        return streamingDomains.some(domain => url.includes(domain));
+    }
+
+    isDocumentUrl(url) {
+        const docExtensions = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx'];
+        const urlPath = new URL(url).pathname.toLowerCase();
+        return docExtensions.some(ext => urlPath.endsWith(ext)) ||
+               url.includes('docs.google.com') || 
+               url.includes('drive.google.com');
+    }
+
+    isWebPageUrl(url) {
+        const urlObj = new URL(url);
+        return urlObj.pathname === '/' || 
+               urlObj.pathname.endsWith('.html') || 
+               urlObj.pathname.endsWith('.htm') ||
+               !urlObj.pathname.includes('.');
+    }
+
+    async processVideoStreamingUrl(url) {
+        const hostname = new URL(url).hostname;
+        const windowId = WindowManager.createWindow(`${hostname}: Video`, 'video-stream');
+        const container = document.querySelector(`#${windowId} .window-content`);
+        
+        container.innerHTML = `
+            <div class="video-stream-viewer">
+                <div class="stream-header">
+                    <h3>Video Stream from ${hostname}</h3>
+                    <p>Loading external video content...</p>
+                </div>
+                <iframe 
+                    src="${url}"
+                    style="width: 100%; height: 400px; border: none; border-radius: 8px;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <div class="legal-notice">
+                    Content is streamed from ${hostname}. OmniPlay is not responsible for external content.
+                </div>
+            </div>
+        `;
+    }
+
+    async processDocumentUrl(url) {
+        const filename = new URL(url).pathname.split('/').pop() || 'Document';
+        const windowId = WindowManager.createWindow(`Document: ${filename}`, 'document');
+        const container = document.querySelector(`#${windowId} .window-content`);
+        
+        if (url.includes('docs.google.com') || url.includes('drive.google.com')) {
+            // Handle Google Docs/Drive
+            const embedUrl = url.replace('/edit', '/preview').replace('/view', '/preview');
+            container.innerHTML = `
+                <div class="document-viewer">
+                    <iframe 
+                        src="${embedUrl}"
+                        style="width: 100%; height: 500px; border: none;"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            `;
+        } else {
+            // Handle direct document URLs
+            await URLViewer.render(url, container);
+        }
+    }
+
+    async processWebPageUrl(url) {
+        const hostname = new URL(url).hostname;
+        const windowId = WindowManager.createWindow(`Website: ${hostname}`, 'webpage');
+        const container = document.querySelector(`#${windowId} .window-content`);
+        
+        container.innerHTML = `
+            <div class="webpage-viewer">
+                <div class="webpage-header">
+                    <h3>Website: ${hostname}</h3>
+                    <p><a href="${url}" target="_blank" rel="noopener">Open in new tab</a></p>
+                </div>
+                <iframe 
+                    src="${url}"
+                    style="width: 100%; height: 500px; border: none; border-radius: 8px;"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                    loading="lazy">
+                </iframe>
+                <div class="legal-notice">
+                    External website content. Some features may be limited due to security restrictions.
+                </div>
+            </div>
+        `;
     }
 }
 

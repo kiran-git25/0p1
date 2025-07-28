@@ -1,7 +1,4 @@
 
-// Import dangerous extensions utility
-import { isDangerousFile, getDangerLevel } from '../utils/dangerousExtensions.js';
-
 class FileHandler {
     static supportedTypes = {
         // Documents
@@ -98,11 +95,11 @@ class FileHandler {
     }
 
     static isDangerous(file) {
-        return isDangerousFile(file.name, file.type);
+        return window.isDangerousFile ? window.isDangerousFile(file.name, file.type) : false;
     }
     
     static getDangerLevel(file) {
-        return getDangerLevel(file.name, file.type);
+        return window.getDangerLevel ? window.getDangerLevel(file.name, file.type) : 'low';
     }
     
     static getViewerType(fileType) {

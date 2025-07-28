@@ -83,6 +83,47 @@
     overflow-y: auto;
 }
 
+/* Video Stream Viewer Styles */
+.video-stream-viewer,
+.webpage-viewer,
+.document-viewer {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream-header,
+.webpage-header {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #007bff;
+}
+
+.stream-header h3,
+.webpage-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #007bff;
+}
+
+.stream-header p,
+.webpage-header p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.webpage-header a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.webpage-header a:hover {
+    text-decoration: underline;
+}
+
 .instagram-disclaimer {
     background: #fce4ec;
     border: 1px solid #e91e63;

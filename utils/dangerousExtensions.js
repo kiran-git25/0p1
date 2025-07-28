@@ -73,3 +73,7 @@ function getDangerLevel(filename, mimetype = '') {
 
     return 'unknown';
 }
+
+// Export functions to global scope
+window.isDangerousFile = isDangerousFile;
+window.getDangerLevel = getDangerLevel;
