@@ -235,6 +235,185 @@ header p {
     max-width: 100%;
 }
 
+/* Enhanced Media Controls */
+.video-container,
+.audio-container {
+    position: relative;
+    width: 100%;
+}
+
+.enhanced-video,
+.enhanced-audio {
+    width: 100%;
+    display: block;
+}
+
+.video-controls,
+.audio-controls {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
+.controls-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.seek-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 12px;
+}
+
+.seek-bar,
+.volume-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+}
+
+.seek-bar {
+    flex: 1;
+}
+
+.volume-bar {
+    width: 60px;
+}
+
+.seek-bar::-webkit-slider-thumb,
+.volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.seek-bar::-moz-range-thumb,
+.volume-bar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.time-display {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    min-width: 80px;
+}
+
+.speed-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Mini Player */
+.mini-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    min-width: 300px;
+    transition: all 0.3s ease;
+}
+
+.mini-player.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+}
+
+.mini-player-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.mini-player-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mini-player-title {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+.mini-player-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.mini-player-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.mini-control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.mini-control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .pdf-viewer {
     height: 100%;
     overflow: auto;
@@ -337,5 +516,48 @@ header p {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    
+    .controls-row {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .control-btn {
+        padding: 10px 14px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+    
+    .seek-container {
+        width: 100%;
+        order: -1;
+        margin: 8px 0;
+    }
+    
+    .mini-player {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+    }
+    
+    .mini-player-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .mini-player-controls {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .url-input {
+        width: 100%;
     }
 }
