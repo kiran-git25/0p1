@@ -1,4 +1,3 @@
-// UrlViewer.jsx
 import React from "react";
 import { getEmbedUrl } from "../utils/fileHandlers";
 
